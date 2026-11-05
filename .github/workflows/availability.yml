@@ -1,0 +1,39 @@
+name: Public availability
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: availability
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Check public pages and assets
+        id: probe
+        continue-on-error: true
+        run: python3 check.py
+      - name: Save observation
+        if: always()
+        run: |
+          test -f status/latest.json
+          python3 summarize.py >> "$GITHUB_STEP_SUMMARY"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add status/*.json
+          git diff --cached --quiet || git commit -m 'Record public availability observation'
+          git push
+      - name: Record incident or recovery
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 incident.py
+      - name: Report failure
+        if: steps.probe.outcome != 'success'
+        run: exit 1
