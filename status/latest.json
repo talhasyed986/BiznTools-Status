@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-11-22T12:36:48.491578+00:00",
+  "at_utc": "2026-11-22T20:21:54.303113+00:00",
   "event": "unchanged",
   "healthy": true,
   "signature": "healthy",
@@ -11,7 +11,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.535
+      "elapsed_seconds": 0.148
     },
     {
       "url": "https://bizntools.com/tools",
@@ -19,7 +19,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/tools",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.506
+      "elapsed_seconds": 0.3
     },
     {
       "url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
@@ -27,7 +27,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.659
+      "elapsed_seconds": 0.281
     },
     {
       "url": "https://bizntools.com/documents/merge-pdf",
@@ -35,7 +35,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/documents/merge-pdf",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.359
+      "elapsed_seconds": 0.276
     },
     {
       "url": "https://www.bizntools.com/",
@@ -43,7 +43,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.249
+      "elapsed_seconds": 0.292
     },
     {
       "url": "https://bizntools.com/sitemap.xml",
@@ -51,7 +51,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/sitemap.xml",
       "content_type": "application/xml",
-      "elapsed_seconds": 0.163
+      "elapsed_seconds": 0.28
     },
     {
       "url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
@@ -59,7 +59,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
       "content_type": "application/javascript; charset=utf-8",
-      "elapsed_seconds": 0.153
+      "elapsed_seconds": 0.115
     },
     {
       "url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
@@ -67,7 +67,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
       "content_type": "text/css; charset=utf-8",
-      "elapsed_seconds": 0.052
+      "elapsed_seconds": 0.118
     }
   ],
   "retried": false,
