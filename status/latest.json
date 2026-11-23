@@ -1,17 +1,37 @@
 {
-  "at_utc": "2026-11-23T10:47:24.096457+00:00",
-  "event": "unchanged",
-  "healthy": true,
-  "signature": "healthy",
-  "failures": [],
-  "checks": [
+  "at_utc": "2026-11-23T20:53:08.359376+00:00",
+  "event": "incident_started",
+  "healthy": false,
+  "signature": "384a1e9afaa13a9f481aa4e1755292d4f7b97a52cdd897d3bd86001a27ee439b",
+  "failures": [
     {
       "url": "https://bizntools.com/",
-      "ok": true,
+      "ok": false,
       "status": 200,
       "final_url": "https://bizntools.com/",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.306
+      "error": "Expected page content missing",
+      "elapsed_seconds": 0.136
+    },
+    {
+      "url": "https://www.bizntools.com/",
+      "ok": false,
+      "status": 200,
+      "final_url": "https://bizntools.com/",
+      "content_type": "text/html; charset=utf-8",
+      "error": "Expected page content missing",
+      "elapsed_seconds": 0.177
+    }
+  ],
+  "checks": [
+    {
+      "url": "https://bizntools.com/",
+      "ok": false,
+      "status": 200,
+      "final_url": "https://bizntools.com/",
+      "content_type": "text/html; charset=utf-8",
+      "error": "Expected page content missing",
+      "elapsed_seconds": 0.136
     },
     {
       "url": "https://bizntools.com/tools",
@@ -19,7 +39,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/tools",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.364
+      "elapsed_seconds": 0.045
     },
     {
       "url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
@@ -27,7 +47,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.384
+      "elapsed_seconds": 0.052
     },
     {
       "url": "https://bizntools.com/documents/merge-pdf",
@@ -35,15 +55,16 @@
       "status": 200,
       "final_url": "https://bizntools.com/documents/merge-pdf",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.163
+      "elapsed_seconds": 0.146
     },
     {
       "url": "https://www.bizntools.com/",
-      "ok": true,
+      "ok": false,
       "status": 200,
       "final_url": "https://bizntools.com/",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.325
+      "error": "Expected page content missing",
+      "elapsed_seconds": 0.177
     },
     {
       "url": "https://bizntools.com/sitemap.xml",
@@ -51,7 +72,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/sitemap.xml",
       "content_type": "application/xml",
-      "elapsed_seconds": 0.122
+      "elapsed_seconds": 0.284
     },
     {
       "url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
@@ -59,7 +80,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
       "content_type": "application/javascript; charset=utf-8",
-      "elapsed_seconds": 0.075
+      "elapsed_seconds": 0.139
     },
     {
       "url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
@@ -67,9 +88,76 @@
       "status": 200,
       "final_url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
       "content_type": "text/css; charset=utf-8",
-      "elapsed_seconds": 0.07
+      "elapsed_seconds": 0.131
     }
   ],
-  "retried": false,
-  "first_attempt": null
+  "retried": true,
+  "first_attempt": [
+    {
+      "url": "https://bizntools.com/",
+      "ok": false,
+      "status": 200,
+      "final_url": "https://bizntools.com/",
+      "content_type": "text/html; charset=utf-8",
+      "error": "Expected page content missing",
+      "elapsed_seconds": 0.375
+    },
+    {
+      "url": "https://bizntools.com/tools",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://bizntools.com/tools",
+      "content_type": "text/html; charset=utf-8",
+      "elapsed_seconds": 0.331
+    },
+    {
+      "url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
+      "content_type": "text/html; charset=utf-8",
+      "elapsed_seconds": 0.36
+    },
+    {
+      "url": "https://bizntools.com/documents/merge-pdf",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://bizntools.com/documents/merge-pdf",
+      "content_type": "text/html; charset=utf-8",
+      "elapsed_seconds": 0.16
+    },
+    {
+      "url": "https://www.bizntools.com/",
+      "ok": false,
+      "status": 200,
+      "final_url": "https://bizntools.com/",
+      "content_type": "text/html; charset=utf-8",
+      "error": "Expected page content missing",
+      "elapsed_seconds": 0.504
+    },
+    {
+      "url": "https://bizntools.com/sitemap.xml",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://bizntools.com/sitemap.xml",
+      "content_type": "application/xml",
+      "elapsed_seconds": 0.129
+    },
+    {
+      "url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "elapsed_seconds": 0.053
+    },
+    {
+      "url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
+      "content_type": "text/css; charset=utf-8",
+      "elapsed_seconds": 0.053
+    }
+  ]
 }
