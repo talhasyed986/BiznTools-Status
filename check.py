@@ -1,5 +1,6 @@
 """Bounded public checks. No credentials, browser analytics, or server mutations."""
 from concurrent.futures import ThreadPoolExecutor
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
@@ -9,9 +10,42 @@ import datetime, fcntl, hashlib, json, os, re, tempfile, time
 ROOT = Path(os.environ.get('BIZNTOOLS_STATUS_DIR', Path(__file__).resolve().parent / 'status'))
 ROOT.mkdir(parents=True, exist_ok=True)
 ORIGIN = 'https://bizntools.com'
-PAGES = [('/', 'Free Business Calculators'), ('/tools', 'BiznTools'),
+PAGES = [('/', None), ('/tools', 'BiznTools'),
          ('/inventory-operations/acres-per-hour-calculator', 'Acres Per Hour Calculator'),
          ('/documents/merge-pdf', 'Merge PDF')]
+
+class Homepage(HTMLParser):
+    """Recognize the public homepage across headline and layout changes."""
+
+    def __init__(self):
+        super().__init__()
+        self.canonicals = []
+        self.in_heading = False
+        self.has_heading = False
+        self.has_directory_link = False
+
+    def handle_starttag(self, tag, attributes):
+        attrs = dict(attributes)
+        if tag == 'link' and 'canonical' in (attrs.get('rel') or '').lower().split():
+            self.canonicals.append(attrs.get('href'))
+        elif tag == 'h1':
+            self.in_heading = True
+        elif tag == 'a' and attrs.get('href') in ('/tools', ORIGIN + '/tools'):
+            self.has_directory_link = True
+
+    def handle_endtag(self, tag):
+        if tag == 'h1':
+            self.in_heading = False
+
+    def handle_data(self, data):
+        if self.in_heading and data.strip():
+            self.has_heading = True
+
+    def matches(self, body):
+        self.feed(body)
+        self.close()
+        return (self.canonicals in ([ORIGIN], [ORIGIN + '/'])
+                and self.has_heading and self.has_directory_link)
 
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
@@ -41,6 +75,7 @@ def fetch(url, marker=None, content_type=None):
     try:
         with get_response(url) as response:
             body = response.read(2_000_001)
+            text = body.decode('utf-8', errors='replace')
             row.update(status=response.status, final_url=response.url,
                        content_type=response.headers.get('Content-Type', ''))
             if response.status != 200:
@@ -53,10 +88,13 @@ def fetch(url, marker=None, content_type=None):
                 row['error'] = 'Expected page content missing'
             elif content_type and content_type not in row['content_type']:
                 row['error'] = 'Unexpected content type'
+            elif url in (ORIGIN + '/', 'https://www.bizntools.com/') and (
+                    response.url not in (ORIGIN, ORIGIN + '/') or not Homepage().matches(text)):
+                row['error'] = 'Homepage canonical, heading or tool directory link missing'
             else:
                 row['ok'] = True
         row['elapsed_seconds'] = round(time.monotonic() - started, 3)
-        return row, body.decode('utf-8', errors='replace')
+        return row, text
     except Exception as exc:
         if isinstance(exc, HTTPError): row['status'] = exc.code
         row['error'] = str(exc)[:300]
@@ -65,7 +103,7 @@ def fetch(url, marker=None, content_type=None):
 
 def probe():
     jobs = [(ORIGIN + path, marker, 'text/html') for path, marker in PAGES]
-    jobs += [('https://www.bizntools.com/', 'Free Business Calculators', 'text/html'),
+    jobs += [('https://www.bizntools.com/', None, 'text/html'),
              (ORIGIN + '/sitemap.xml', '<urlset', 'xml')]
     with ThreadPoolExecutor(max_workers=3) as pool:
         fetched = list(pool.map(lambda args: fetch(*args), jobs))
