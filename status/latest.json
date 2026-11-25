@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-11-25T11:22:32.453632+00:00",
+  "at_utc": "2026-11-25T12:21:55.108317+00:00",
   "event": "unchanged",
   "healthy": true,
   "signature": "healthy",
@@ -11,7 +11,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.494
+      "elapsed_seconds": 0.579
     },
     {
       "url": "https://bizntools.com/tools",
@@ -19,7 +19,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/tools",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.442
+      "elapsed_seconds": 0.62
     },
     {
       "url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
@@ -27,7 +27,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/inventory-operations/acres-per-hour-calculator",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.524
+      "elapsed_seconds": 0.551
     },
     {
       "url": "https://bizntools.com/documents/merge-pdf",
@@ -35,7 +35,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/documents/merge-pdf",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.244
+      "elapsed_seconds": 0.347
     },
     {
       "url": "https://www.bizntools.com/",
@@ -43,7 +43,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/",
       "content_type": "text/html; charset=utf-8",
-      "elapsed_seconds": 0.636
+      "elapsed_seconds": 0.782
     },
     {
       "url": "https://bizntools.com/sitemap.xml",
@@ -51,7 +51,7 @@
       "status": 200,
       "final_url": "https://bizntools.com/sitemap.xml",
       "content_type": "application/xml",
-      "elapsed_seconds": 0.374
+      "elapsed_seconds": 0.278
     },
     {
       "url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
@@ -59,15 +59,15 @@
       "status": 200,
       "final_url": "https://bizntools.com/_next/static/immutable/chunks/1qj7o5lrnsxi3.js",
       "content_type": "application/javascript; charset=utf-8",
-      "elapsed_seconds": 0.111
+      "elapsed_seconds": 0.239
     },
     {
-      "url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
+      "url": "https://bizntools.com/_next/static/immutable/chunks/43-sofcg8p2y2.css",
       "ok": true,
       "status": 200,
-      "final_url": "https://bizntools.com/_next/static/immutable/chunks/1q2zslmz4aamn.css",
+      "final_url": "https://bizntools.com/_next/static/immutable/chunks/43-sofcg8p2y2.css",
       "content_type": "text/css; charset=utf-8",
-      "elapsed_seconds": 0.112
+      "elapsed_seconds": 0.262
     }
   ],
   "retried": false,
