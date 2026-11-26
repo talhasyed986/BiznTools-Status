@@ -148,6 +148,17 @@ def save(path, value):
     finally:
         if os.path.exists(name): os.unlink(name)
 
+def observation_interval_seconds(previous, now):
+    if not previous or not previous.get('at_utc'):
+        return None
+    try:
+        prior = datetime.datetime.fromisoformat(previous['at_utc'])
+        elapsed = (now - prior).total_seconds()
+    except (TypeError, ValueError):
+        return None
+    return int(elapsed) if elapsed >= 0 else None
+
+
 if __name__ == '__main__':
     with (ROOT / '.probe-lock').open('a+') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -158,7 +169,9 @@ if __name__ == '__main__':
         current = classify(rows)
         prior_path = ROOT / 'state.json'
         previous = json.loads(prior_path.read_text()) if prior_path.exists() else None
-        result = {'at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        now = datetime.datetime.now(datetime.timezone.utc)
+        result = {'at_utc': now.isoformat(),
+                  'seconds_since_previous_observation': observation_interval_seconds(previous, now),
                   'event': event(previous, current), **current, 'checks': rows,
                   'retried': rows is not first, 'first_attempt': first if rows is not first else None}
         save(ROOT / 'latest.json', result)
