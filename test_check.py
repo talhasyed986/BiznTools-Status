@@ -1,6 +1,7 @@
+import datetime
 import unittest
 
-from check import Homepage, ORIGIN
+from check import Homepage, ORIGIN, observation_interval_seconds
 
 
 class HomepageTests(unittest.TestCase):
@@ -26,3 +27,15 @@ class HomepageTests(unittest.TestCase):
         ):
             with self.subTest(body=body):
                 self.assertFalse(Homepage().matches(body))
+
+class ObservationIntervalTests(unittest.TestCase):
+    now = datetime.datetime(2026, 11, 26, 14, 5, tzinfo=datetime.timezone.utc)
+
+    def test_elapsed_seconds_from_previous_observation(self):
+        previous = {'at_utc': '2026-11-26T05:05:00+00:00'}
+        self.assertEqual(observation_interval_seconds(previous, self.now), 32400)
+
+    def test_unavailable_or_future_timestamp_is_unknown(self):
+        for previous in [None, {}, {'at_utc': 'bad'}, {'at_utc': '2026-12-01T00:00:00+00:00'}]:
+            with self.subTest(previous=previous):
+                self.assertIsNone(observation_interval_seconds(previous, self.now))
